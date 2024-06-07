@@ -1,9 +1,9 @@
 <section>
   <form>
-    <input type="text" placeholder="Filter by city" />
-    <button class="primary" type="button">Search</button>
+    <input type="text" placeholder="Filter by city" #filter> <!-- Use element #filter to get access to the input element as its value -->
+    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button> <!-- By binding to the click event on the button element, you are able to call the filterResults function. -->
   </form>
 </section>
 <section class="results">
-  <app-housing-location *ngFor="let housingLocation of housingLocationList" [housingLocation]="housingLocation"></app-housing-location>
+  <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation"></app-housing-location> <!-- Update the ngFor value to iterate over values from the filteredLocationList array -->
 </section>
