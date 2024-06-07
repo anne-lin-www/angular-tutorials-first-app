@@ -24,7 +24,15 @@ export class DetailsComponent {
   });
 
   constructor() {
-    const housingLocationId = Number(this.route.snapshot.params['id']);
+    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10); // Number(this.route.snapshot.params['id']);
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
+  }
+
+  submitApplication() { // this function is called when the user submits the apply form
+    this.housingService.submitApplication(
+      this.applyForm.value.firstName ?? '',
+      this.applyForm.value.lastName ?? '',
+      this.applyForm.value.email ?? '',
+    );
   }
 }
